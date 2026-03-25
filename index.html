@@ -1,20 +1,257 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title>My Portfolio</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Portfolio — CS Student</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital@0;1&family=DM+Sans:wght@300;400&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-	<h1>Hello I'm Zuhairy</h1>
-	<p>Computer Science Student</p>
+	<!-- Grain overlay -->
+	<div class="grain"></div>
 
-	<h2>Projects</h2>
-	<center>
-		<p>Testing</p>
-	</center>
+	<!-- Cursor dot -->
+	<div class="cursor-dot" id="cursorDot"></div>
+
+	<!-- Navigation -->
+	<nav>
+		<div class="nav-logo">YN</div>
+		<ul class="nav-links">
+			<li><a href="#about">About</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li><a href="#skills">Skills</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- Hero -->
+	<section class="hero" id="about">
+		<div class="hero-eyebrow">
+			<span class="dot"></span>
+			<span class="mono">Computer Science Student</span>
+		</div>
+
+		<h1 class="hero-title">
+			<span class="line reveal" style="--d:0.1s">Your</span>
+			<span class="line italic reveal" style="--d:0.3s">Name.</span>
+		</h1>
+
+		<div class="hero-bottom">
+			<p class="hero-desc reveal" style="--d:0.5s">
+				I build thoughtful digital experiences —<br>
+				at the intersection of systems thinking<br>
+				and human-centered design.
+			</p>
+			<div class="hero-index reveal" style="--d:0.7s">
+				<span class="mono small">Currently available for</span><br>
+				<span class="mono small accent">internships & collaborations</span>
+			</div>
+		</div>
+
+		<div class="hero-rule reveal" style="--d:0.9s"></div>
+
+		<div class="hero-meta reveal" style="--d:1.1s">
+			<span class="mono small">Est. 2024</span>
+			<span class="mono small">Based in [Your City]</span>
+			<span class="mono small">Open to Remote</span>
+		</div>
+	</section>
+
+	<!-- Projects -->
+	<section class="projects" id="projects">
+		<div class="section-header">
+			<span class="mono small muted">Selected Work</span>
+			<h2 class="section-title">Projects</h2>
+		</div>
+
+		<div class="project-list">
+
+			<article class="project-item" data-num="01">
+				<div class="project-content">
+					<div class="project-tags">
+						<span class="tag">Python</span>
+						<span class="tag">Machine Learning</span>
+					</div>
+					<h3 class="project-name">Project Alpha</h3>
+					<p class="project-desc">A machine learning model that classifies images using convolutional neural
+						networks. Achieved 94% accuracy on the test dataset with custom data augmentation pipelines.</p>
+					<div class="project-links">
+						<a href="#" class="link-arrow">View Code →</a>
+						<a href="#" class="link-arrow">Live Demo →</a>
+					</div>
+				</div>
+				<div class="project-visual">
+					<div class="project-placeholder">
+						<span class="mono small">Preview</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="project-item" data-num="02">
+				<div class="project-content">
+					<div class="project-tags">
+						<span class="tag">React</span>
+						<span class="tag">Node.js</span>
+						<span class="tag">MongoDB</span>
+					</div>
+					<h3 class="project-name">Project Beta</h3>
+					<p class="project-desc">A full-stack web application for collaborative task management with
+						real-time updates, user authentication, and a drag-and-drop interface built for teams.</p>
+					<div class="project-links">
+						<a href="#" class="link-arrow">View Code →</a>
+						<a href="#" class="link-arrow">Live Demo →</a>
+					</div>
+				</div>
+				<div class="project-visual">
+					<div class="project-placeholder">
+						<span class="mono small">Preview</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="project-item" data-num="03">
+				<div class="project-content">
+					<div class="project-tags">
+						<span class="tag">C++</span>
+						<span class="tag">Algorithms</span>
+					</div>
+					<h3 class="project-name">Project Gamma</h3>
+					<p class="project-desc">An optimized pathfinding algorithm implementation comparing Dijkstra, A*,
+						and Bellman-Ford across various graph types with performance benchmarking visualizations.</p>
+					<div class="project-links">
+						<a href="#" class="link-arrow">View Code →</a>
+					</div>
+				</div>
+				<div class="project-visual">
+					<div class="project-placeholder">
+						<span class="mono small">Preview</span>
+					</div>
+				</div>
+			</article>
+
+		</div>
+	</section>
+
+	<!-- Skills -->
+	<section class="skills" id="skills">
+		<div class="section-header">
+			<span class="mono small muted">What I Work With</span>
+			<h2 class="section-title">Skills</h2>
+		</div>
+
+		<div class="skills-grid">
+			<div class="skill-group">
+				<h4 class="skill-group-title mono small">Languages</h4>
+				<ul class="skill-list">
+					<li>Python</li>
+					<li>JavaScript</li>
+					<li>C / C++</li>
+					<li>Java</li>
+					<li>SQL</li>
+				</ul>
+			</div>
+			<div class="skill-group">
+				<h4 class="skill-group-title mono small">Frameworks</h4>
+				<ul class="skill-list">
+					<li>React</li>
+					<li>Node.js</li>
+					<li>Express</li>
+					<li>TensorFlow</li>
+					<li>Flask</li>
+				</ul>
+			</div>
+			<div class="skill-group">
+				<h4 class="skill-group-title mono small">Tools & Platforms</h4>
+				<ul class="skill-list">
+					<li>Git & GitHub</li>
+					<li>Docker</li>
+					<li>Linux</li>
+					<li>PostgreSQL</li>
+					<li>MongoDB</li>
+				</ul>
+			</div>
+			<div class="skill-group">
+				<h4 class="skill-group-title mono small">Concepts</h4>
+				<ul class="skill-list">
+					<li>Data Structures</li>
+					<li>Algorithms</li>
+					<li>Machine Learning</li>
+					<li>REST APIs</li>
+					<li>OOP</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact -->
+	<section class="contact" id="contact">
+		<div class="contact-inner">
+			<span class="mono small muted">Get In Touch</span>
+			<h2 class="contact-title">
+				Let's build<br><em>something</em><br>together.
+			</h2>
+			<div class="contact-links">
+				<a href="mailto:your@email.com" class="contact-link">
+					<span class="mono small">Email</span>
+					<span>your@email.com →</span>
+				</a>
+				<a href="https://github.com/" target="_blank" class="contact-link">
+					<span class="mono small">GitHub</span>
+					<span>github.com/yourname →</span>
+				</a>
+				<a href="https://linkedin.com/" target="_blank" class="contact-link">
+					<span class="mono small">LinkedIn</span>
+					<span>linkedin.com/in/yourname →</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<span class="mono small muted">© 2024 Your Name</span>
+		<span class="mono small muted">Designed with intention.</span>
+	</footer>
+
+	<script>
+		// Custom cursor
+		const dot = document.getElementById('cursorDot');
+		document.addEventListener('mousemove', (e) => {
+			dot.style.left = e.clientX + 'px';
+			dot.style.top = e.clientY + 'px';
+		});
+
+		// Hover effect on links
+		document.querySelectorAll('a, .project-item').forEach(el => {
+			el.addEventListener('mouseenter', () => dot.classList.add('expanded'));
+			el.addEventListener('mouseleave', () => dot.classList.remove('expanded'));
+		});
+
+		// Scroll reveal
+		const reveals = document.querySelectorAll('.reveal, .project-item, .skill-group, .contact-link');
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, { threshold: 0.1 });
+		reveals.forEach(el => observer.observe(el));
+
+		// Nav scroll behavior
+		const nav = document.querySelector('nav');
+		window.addEventListener('scroll', () => {
+			nav.classList.toggle('scrolled', window.scrollY > 60);
+		});
+	</script>
 
 </body>
 
