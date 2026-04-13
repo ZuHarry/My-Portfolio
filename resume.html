@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume — Muhammad Zuhairy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .resume-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .resume-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .resume-section-title {
+            font-family: var(--font-pixel);
+            font-size: 0.52rem;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .resume-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .resume-item-title {
+            font-family: var(--font-pixel);
+            font-size: 0.5rem;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-item-sub {
+            font-size: 0.8rem;
+            color: var(--amber);
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-item-date {
+            font-size: 0.72rem;
+            color: var(--green-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item-desc {
+            font-size: 0.82rem;
+            color: rgba(0, 255, 65, 0.65);
+            line-height: 1.8;
+        }
+
+        .skill-bar-wrap {
+            margin-bottom: 0.9rem;
+        }
+
+        .skill-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-bar-label span:last-child {
+            color: var(--amber);
+            font-size: 0.65rem;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: var(--green);
+        }
+
+        .download-btn {
+            font-family: var(--font-pixel);
+            font-size: 0.5rem;
+            letter-spacing: 0.08em;
+            color: var(--black);
+            background: var(--green);
+            border: none;
+            padding: 10px 20px;
+            cursor: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: var(--amber);
+        }
+
+        @media(max-width:700px) {
+            .resume-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanlines"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <nav>
+        <div class="nav-logo">&#9658;&nbsp;MZ.EXE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">[ABOUT ME]</a></li>
+            <li><a href="resume.html" class="active">[RESUME]</a></li>
+            <li><a href="projects.html">[PROJECT]</a></li>
+            <li><a href="contacts.html">[CONTACTS]</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-btn">[MORE]&nbsp;&#9660;</button>
+                <div class="dropdown-menu">
+                    <a href="hobby.html">[MY HOBBY]</a>
+                    <a href="interests.html">[MY INTERESTS]</a>
+                </div>
+            </li>
+            <li><button class="nav-search-btn">&#9906;</button></li>
+        </ul>
+    </nav>
+
+    <div class="page page-content">
+        <div class="page-header"
+            style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+            <div>
+                <span class="page-eyebrow">// PLAYER_STATS</span>
+                <h1 class="page-title">&#9658;&nbsp;RESUME<span class="outline">.</span></h1>
+            </div>
+            <a href="#" class="download-btn">&#11123;&nbsp;DOWNLOAD PDF</a>
+        </div>
+
+        <div class="section-divider">
+            <span class="div-line"></span>
+            <span class="div-label">CHARACTER SHEET</span>
+            <span class="div-line"></span>
+        </div>
+
+        <div class="resume-layout">
+
+            <!-- LEFT COLUMN -->
+            <div>
+                <div class="resume-section reveal">
+                    <div class="resume-section-title">&#9658;&nbsp;EDUCATION</div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">Bachelor in Computer Science (Software Development)</div>
+                        <div class="resume-item-sub">Universiti Teknikal Malaysia Melaka</div>
+                        <div class="resume-item-date">&#9632;&nbsp;2023 — PRESENT</div>
+                        <div class="resume-item-desc">Relevant coursework: Data Structures, Algorithms, Mobile
+                            Application,
+                            Software Engineering, Database Systems, System Analysis.
+                        </div>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">Diploma in Digital Technology</div>
+                        <div class="resume-item-sub">Politeknik Ungku Omar, Ipoh</div>
+                        <div class="resume-item-date">&#9632;&nbsp;2020 — 2023</div>
+                        <div class="resume-item-desc">Relevant coursework: Mobile Application, Web Application
+                            Development
+                            System Analysis.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section reveal" style="--d:0.1s">
+                    <div class="resume-section-title">&#9658;&nbsp;EXPERIENCE</div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">IT INTERN</div>
+                        <div class="resume-item-sub">YTY GROUP</div>
+                        <div class="resume-item-date">&#9632;&nbsp;OCT 2022 — MAC 2023</div>
+                        <div class="resume-item-desc">Assisting staff with IT related issues. Helps installing systems
+                            for
+                            pc, printer and other IT related issues.</div>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">Retail Cashier</div>
+                        <div class="resume-item-sub">AEON CO SERI MANJUNG</div>
+                        <div class="resume-item-date">&#9632;&nbsp;MAY 2023 — SEPT 2023</div>
+                        <div class="resume-item-desc">Handles cashier counter and customer services</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+                <div class="resume-section reveal" style="--d:0.15s">
+                    <div class="resume-section-title">&#9658;&nbsp;SKILLS LEVEL</div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Python</span><span>90%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>JavaScript / React</span><span>85%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>C / C++</span><span>75%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Node.js / Express</span><span>80%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>SQL / MongoDB</span><span>78%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:78%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Machine Learning</span><span>70%</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section reveal" style="--d:0.2s">
+                    <div class="resume-section-title">&#9658;&nbsp;ACHIEVEMENTS</div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">HACKATHON WINNER</div>
+                        <div class="resume-item-sub">Event Name — 2023</div>
+                        <div class="resume-item-desc">1st place out of 40 teams for building a real-time disaster
+                            alert
+                            system.</div>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-item-title">DEAN'S LIST</div>
+                        <div class="resume-item-sub">Your University — 2023</div>
+                        <div class="resume-item-desc">Awarded for achieving GPA above 3.7 for two consecutive
+                            semesters.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section reveal" style="--d:0.25s">
+                    <div class="resume-section-title">&#9658;&nbsp;LANGUAGES</div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Bahasa Melayu</span><span>NATIVE</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>English</span><span>FLUENT</span></div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width:88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <span>&#9632;&nbsp;GAME OVER&nbsp;&#9632;&nbsp;&copy; 2024 Muhammad Zuhairy&nbsp;&#9632;</span>
+        <span class="blink">INSERT COIN</span>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+
+</html>

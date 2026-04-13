@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Interests — Muhammad Zuhairy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .interests-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .interest-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .interest-title {
+            font-family: var(--font-pixel);
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            color: var(--green);
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .interest-icon {
+            font-size: 1rem;
+        }
+
+        .interest-desc {
+            font-size: 0.87rem;
+            color: rgba(0, 255, 65, 0.65);
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .interest-tag {
+            font-size: 0.62rem;
+            border: 1px solid var(--amber-dim);
+            color: var(--amber);
+            padding: 2px 8px;
+            letter-spacing: 0.04em;
+        }
+
+        /* Tech stack radar */
+        .radar-wrap {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            padding: 1.5rem;
+        }
+
+        .radar-title {
+            font-family: var(--font-pixel);
+            font-size: 0.44rem;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+        }
+
+        .radar-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .radar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .radar-label span:last-child {
+            color: var(--amber);
+            font-size: 0.65rem;
+        }
+
+        .radar-bar {
+            height: 6px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .radar-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--green), var(--amber));
+        }
+
+        /* Quote block */
+        .quote-block {
+            border-left: 3px solid var(--green);
+            padding: 1rem 1.5rem;
+            background: var(--green-faint);
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-text {
+            font-size: 0.9rem;
+            color: rgba(0, 255, 65, 0.8);
+            line-height: 1.9;
+            font-style: italic;
+        }
+
+        .quote-author {
+            font-family: var(--font-pixel);
+            font-size: 0.38rem;
+            color: var(--amber);
+            margin-top: 0.5rem;
+            letter-spacing: 0.08em;
+        }
+
+        @media(max-width:800px) {
+            .interests-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanlines"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <nav>
+        <div class="nav-logo">&#9658;&nbsp;MZ.EXE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">[ABOUT ME]</a></li>
+            <li><a href="resume.html">[RESUME]</a></li>
+            <li><a href="projects.html">[PROJECT]</a></li>
+            <li><a href="contacts.html">[CONTACTS]</a></li>
+            <li class="nav-dropdown open">
+                <button class="nav-dropdown-btn active">[MORE]&nbsp;&#9660;</button>
+                <div class="dropdown-menu">
+                    <a href="hobby.html">[MY HOBBY]</a>
+                    <a href="interests.html" class="active">[MY INTERESTS]</a>
+                </div>
+            </li>
+            <li><button class="nav-search-btn">&#9906;</button></li>
+        </ul>
+    </nav>
+
+    <div class="page page-content">
+        <div class="page-header">
+            <span class="page-eyebrow">// PLAYER_DRIVES</span>
+            <h1 class="page-title">&#9658;&nbsp;MY <span class="outline">INTERESTS.</span></h1>
+        </div>
+
+        <div class="section-divider">
+            <span class="div-line"></span>
+            <span class="div-label">WHAT DRIVES ME</span>
+            <span class="div-line"></span>
+        </div>
+
+        <div class="interests-layout">
+            <div>
+
+                <div class="interest-block reveal">
+                    <div class="interest-title"><span class="interest-icon">&#129504;</span>ARTIFICIAL INTELLIGENCE
+                    </div>
+                    <div class="interest-desc">AI and machine learning fascinate me — particularly how models learn from
+                        data to make decisions. I'm especially interested in computer vision and natural language
+                        processing and their real-world applications.</div>
+                    <div class="interest-tags">
+                        <span class="interest-tag">Neural Networks</span>
+                        <span class="interest-tag">Computer Vision</span>
+                        <span class="interest-tag">NLP</span>
+                        <span class="interest-tag">Deep Learning</span>
+                    </div>
+                </div>
+
+                <div class="interest-block reveal" style="--d:0.1s">
+                    <div class="interest-title"><span class="interest-icon">&#127760;</span>WEB TECHNOLOGIES</div>
+                    <div class="interest-desc">I love how the web has evolved — from static pages to complex, real-time
+                        applications. I follow emerging web standards, browser APIs, and the ever-changing JavaScript
+                        ecosystem closely.</div>
+                    <div class="interest-tags">
+                        <span class="interest-tag">WebAssembly</span>
+                        <span class="interest-tag">Progressive Web Apps</span>
+                        <span class="interest-tag">Edge Computing</span>
+                    </div>
+                </div>
+
+                <div class="interest-block reveal" style="--d:0.2s">
+                    <div class="interest-title"><span class="interest-icon">&#128274;</span>CYBERSECURITY</div>
+                    <div class="interest-desc">Understanding how systems can be exploited makes you a better developer.
+                        I enjoy learning about ethical hacking, secure coding practices, and how to build resilient
+                        systems from the ground up.</div>
+                    <div class="interest-tags">
+                        <span class="interest-tag">Ethical Hacking</span>
+                        <span class="interest-tag">Secure Coding</span>
+                        <span class="interest-tag">CTF Challenges</span>
+                    </div>
+                </div>
+
+                <div class="quote-block reveal" style="--d:0.25s">
+                    <div class="quote-text">"The best way to predict the future is to invent it."</div>
+                    <div class="quote-author">— Alan Kay</div>
+                </div>
+
+            </div>
+
+            <div>
+                <div class="radar-wrap reveal" style="--d:0.1s; margin-bottom:2rem;">
+                    <div class="radar-title">&#9658;&nbsp;INTEREST INTENSITY METER</div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Artificial Intelligence</span><span>95%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:95%"></div>
+                        </div>
+                    </div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Web Development</span><span>90%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:90%"></div>
+                        </div>
+                    </div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Cybersecurity</span><span>75%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:75%"></div>
+                        </div>
+                    </div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Cloud Computing</span><span>70%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:70%"></div>
+                        </div>
+                    </div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Open Source</span><span>80%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:80%"></div>
+                        </div>
+                    </div>
+                    <div class="radar-item">
+                        <div class="radar-label"><span>Game Development</span><span>60%</span></div>
+                        <div class="radar-bar">
+                            <div class="radar-fill" style="width:60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interest-block reveal" style="--d:0.2s">
+                    <div class="interest-title"><span class="interest-icon">&#9729;</span>CLOUD COMPUTING</div>
+                    <div class="interest-desc">Distributed systems and cloud infrastructure are the backbone of modern
+                        software. I'm currently learning AWS and exploring serverless architectures, containers, and
+                        microservices patterns.</div>
+                    <div class="interest-tags">
+                        <span class="interest-tag">AWS</span>
+                        <span class="interest-tag">Docker</span>
+                        <span class="interest-tag">Microservices</span>
+                        <span class="interest-tag">Serverless</span>
+                    </div>
+                </div>
+
+                <div class="interest-block reveal" style="--d:0.3s">
+                    <div class="interest-title"><span class="interest-icon">&#127918;</span>GAME DEVELOPMENT</div>
+                    <div class="interest-desc">Game dev combines creativity with complex systems design. I'm curious
+                        about game engines, procedural generation, and how physics simulations are built — even if I
+                        mostly play games rather than build them!</div>
+                    <div class="interest-tags">
+                        <span class="interest-tag">Unity</span>
+                        <span class="interest-tag">Procedural Gen</span>
+                        <span class="interest-tag">Game Physics</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <span>&#9632;&nbsp;GAME OVER&nbsp;&#9632;&nbsp;&copy; 2024 Muhammad Zuhairy&nbsp;&#9632;</span>
+        <span class="blink">INSERT COIN</span>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+
+</html>
