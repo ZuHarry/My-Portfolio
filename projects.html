@@ -60,8 +60,9 @@
 
         .project-links {
             display: flex;
-            gap: 1rem;
+            gap: 0.7rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .project-visual {
@@ -133,6 +134,443 @@
             background: var(--green-faint);
         }
 
+        /* ── OVERVIEW BUTTON ── */
+        .overview-btn {
+            font-family: var(--font-pixel);
+            font-size: 0.38rem;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 179, 0, 0.4);
+            color: rgba(255, 179, 0, 0.7);
+            background: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.06em;
+        }
+
+        .overview-btn:hover {
+            color: var(--amber);
+            border-color: var(--amber);
+            background: rgba(255, 179, 0, 0.06);
+            box-shadow: 0 0 8px rgba(255, 179, 0, 0.2);
+        }
+
+        /* ── MODAL OVERLAY ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            width: min(860px, 96vw);
+            max-height: 90vh;
+            border: 1px solid var(--green);
+            background: #080d08;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.12), inset 0 0 60px rgba(0, 255, 65, 0.02);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.25s;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        /* scanline on modal */
+        .modal-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 65, 0.015) 2px,
+                    rgba(0, 255, 65, 0.015) 4px);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 255, 65, 0.03);
+            flex-shrink: 0;
+        }
+
+        .modal-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .modal-eyebrow {
+            font-family: var(--font-pixel);
+            font-size: 0.32rem;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+        }
+
+        .modal-title {
+            font-family: var(--font-pixel);
+            font-size: 0.75rem;
+            color: var(--green);
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+        }
+
+        .modal-close {
+            font-family: var(--font-pixel);
+            font-size: 0.5rem;
+            color: var(--green-dim);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-close:hover {
+            color: #ff4444;
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.07);
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--green-dim) transparent;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--green-dim);
+        }
+
+        /* Gallery */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+            padding: 2px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 16/10;
+            background: var(--green-faint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .gallery-item:hover {
+            opacity: 0.85;
+            transform: scale(1.01);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-pixel {
+            line-height: 1.3;
+            color: var(--green-dim);
+            text-align: center;
+            letter-spacing: 0.08em;
+            transition: color 0.2s, text-shadow 0.2s;
+            padding: 1rem;
+        }
+
+        .gallery-item:hover .gallery-pixel {
+            color: var(--green);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 6px;
+            left: 8px;
+            font-family: var(--font-pixel);
+            font-size: 0.28rem;
+            color: rgba(0, 255, 65, 0.6);
+            letter-spacing: 0.06em;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 2px 5px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border: 1px solid var(--green-dim);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.15);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            font-family: var(--font-pixel);
+            font-size: 0.5rem;
+            color: var(--green-dim);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-pixel);
+            font-size: 0.6rem;
+            color: var(--green-dim);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+        }
+
+        .lightbox-next {
+            right: 1rem;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-pixel);
+            font-size: 0.32rem;
+            color: var(--green-dim);
+            letter-spacing: 0.08em;
+        }
+
+        /* Modal content */
+        .modal-content {
+            padding: 1.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section-title {
+            font-family: var(--font-pixel);
+            font-size: 0.4rem;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255, 179, 0, 0.2);
+        }
+
+        .modal-section-body {
+            font-size: 0.85rem;
+            color: rgba(0, 255, 65, 0.7);
+            line-height: 1.9;
+        }
+
+        /* Stats */
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            border: 1px solid var(--border);
+            padding: 0.8rem;
+            background: var(--green-faint);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--green-dim);
+            background: var(--green-glow);
+        }
+
+        .stat-label {
+            font-family: var(--font-pixel);
+            font-size: 0.3rem;
+            color: var(--green-dim);
+            letter-spacing: 0.08em;
+        }
+
+        .stat-value {
+            font-family: var(--font-pixel);
+            font-size: 0.55rem;
+            color: var(--green);
+            line-height: 1.4;
+        }
+
+        /* Tech stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-pill {
+            font-family: var(--font-pixel);
+            font-size: 0.32rem;
+            padding: 5px 10px;
+            border: 1px solid var(--green-dim);
+            color: var(--green);
+            background: var(--green-faint);
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .tech-pill:hover {
+            background: var(--green-glow);
+            box-shadow: 0 0 6px rgba(0, 255, 65, 0.2);
+        }
+
+        /* Feature list */
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .feature-list li {
+            font-size: 0.83rem;
+            color: rgba(0, 255, 65, 0.7);
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .feature-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--amber);
+            font-size: 0.7rem;
+        }
+
+        /* Modal footer */
+        .modal-footer {
+            display: flex;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 255, 65, 0.02);
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Achievement */
+        .achievement {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 179, 0, 0.3);
+            background: rgba(255, 179, 0, 0.05);
+            padding: 6px 10px;
+            margin-top: 0.4rem;
+        }
+
+        .achievement-icon {
+            font-size: 0.9rem;
+        }
+
+        .achievement-text {
+            font-family: var(--font-pixel);
+            font-size: 0.3rem;
+            color: var(--amber);
+            letter-spacing: 0.06em;
+            line-height: 1.6;
+        }
+
+        .esc-hint {
+            font-family: var(--font-pixel);
+            font-size: 0.28rem;
+            color: rgba(0, 255, 65, 0.3);
+            letter-spacing: 0.08em;
+            margin-left: auto;
+        }
+
         @media(max-width:700px) {
             .project-item {
                 grid-template-columns: 1fr;
@@ -147,6 +585,15 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
+            }
+
+            .modal-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
             }
         }
     </style>
@@ -196,6 +643,7 @@
 
         <div class="project-list">
 
+            <!-- PROJECT 1: e-Bike SMS -->
             <article class="project-item reveal">
                 <div class="project-meta">
                     <span class="project-num">e-Bike SMS</span>
@@ -221,6 +669,7 @@
                     <div class="project-links">
                         <a href="https://github.com/GhostZen1/eBike_SMS" class="link-btn">&#9658;&nbsp;CODE</a>
                         <a href="#" class="link-btn">&#9658;&nbsp;DEMO</a>
+                        <button class="overview-btn" onclick="openModal('ebike')">&#9670;&nbsp;OVERVIEW</button>
                     </div>
                 </div>
                 <div class="project-visual">
@@ -236,6 +685,7 @@
                 </div>
             </article>
 
+            <!-- PROJECT 2: e-Sihat -->
             <article class="project-item reveal" style="--d:0.1s">
                 <div class="project-meta">
                     <span class="project-num">e-Sihat</span>
@@ -262,6 +712,7 @@
                     <div class="project-links">
                         <a href="#" class="link-btn">&#9658;&nbsp;CODE</a>
                         <a href="#" class="link-btn">&#9658;&nbsp;DEMO</a>
+                        <button class="overview-btn" onclick="openModal('esihat')">&#9670;&nbsp;OVERVIEW</button>
                     </div>
                 </div>
                 <div class="project-visual">
@@ -277,12 +728,13 @@
                 </div>
             </article>
 
+            <!-- PROJECT 3: e-Inventory -->
             <article class="project-item reveal" style="--d:0.2s">
                 <div class="project-meta">
                     <span class="project-num">e-Inventory</span>
                     <div class="project-tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">Algorithms</span>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Firebase</span>
                     </div>
                 </div>
                 <div>
@@ -302,6 +754,7 @@
                     </div>
                     <div class="project-links">
                         <a href="#" class="link-btn">&#9658;&nbsp;CODE</a>
+                        <button class="overview-btn" onclick="openModal('einventory')">&#9670;&nbsp;OVERVIEW</button>
                     </div>
                 </div>
                 <div class="project-visual">
@@ -325,13 +778,279 @@
         <span class="blink">INSERT COIN</span>
     </footer>
 
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+        <button class="lightbox-close" onclick="closeLightbox()">[ X ]</button>
+        <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#9664;</button>
+        <img id="lightboxImg" src="" alt="Preview">
+        <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#9654;</button>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+    </div>
+
+    <!-- ===== OVERVIEW MODAL ===== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+        <div class="modal-box" id="modalBox">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <span class="modal-eyebrow" id="modalEyebrow">// PROJECT_OVERVIEW</span>
+                    <span class="modal-title" id="modalTitle">PROJECT NAME</span>
+                </div>
+                <button class="modal-close" onclick="closeModal()">[ X ]</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-gallery" id="modalGallery"></div>
+
+                <div class="modal-content">
+                    <div class="modal-stats" id="modalStats"></div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">// MISSION_BRIEF</div>
+                        <div class="modal-section-body" id="modalDesc"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">// KEY_FEATURES</div>
+                        <ul class="feature-list" id="modalFeatures"></ul>
+                    </div>
+
+                    <div class="modal-section">
+                        <div class="modal-section-title">// TECH_STACK</div>
+                        <div class="tech-stack" id="modalTech"></div>
+                    </div>
+
+                    <div id="modalAchievementWrap"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a id="modalCodeBtn" href="#" class="link-btn">&#9658;&nbsp;VIEW CODE</a>
+                <a id="modalDemoBtn" href="#" class="link-btn">&#9658;&nbsp;LIVE DEMO</a>
+                <button class="link-btn" onclick="closeModal()">&#9658;&nbsp;CLOSE</button>
+                <span class="esc-hint">[ ESC ] TO EXIT</span>
+            </div>
+        </div>
+    </div>
+
     <script src="nav.js"></script>
     <script>
+        /* ── Filter buttons ── */
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             });
+        });
+
+        /* ── Project data ── */
+        const projects = {
+            ebike: {
+                eyebrow: '// PROJECT_01 — FLUTTER + IoT',
+                title: '&#9658; e-Bike SMS',
+                gallery: [
+                    { img: 'images/ebike1.png', label: 'OVERVIEW' },
+                    { img: 'images/ebike2.jpg', label: 'SCREEN 2' },
+                    { img: 'images/ebike3.jpg', label: 'SCREEN 3' },
+                    { img: 'images/ebike4.jpg', label: 'SCREEN 4' },
+                    { img: 'images/ebike5.jpg', label: 'SCREEN 5' },
+                ],
+                stats: [
+                    { label: 'STATUS', value: '🏆 1ST PLACE' },
+                    { label: 'COURSE', value: 'WORKSHOP 2' },
+                    { label: 'PLATFORM', value: 'MOBILE' },
+                    { label: 'TEAM SIZE', value: 'GROUP' },
+                ],
+                desc: 'e-Bike SMS (Student Mobility Solution) is an IoT-powered campus transportation system built with Flutter. The application connects to an ESP32 microcontroller equipped with a GPS module, enabling real-time bike tracking across university grounds. Students can locate, unlock, and monitor available bikes directly from their smartphones, solving the last-mile mobility challenge on campus.',
+                features: [
+                    'Real-time GPS tracking of e-bikes across campus',
+                    'QR code-based bike unlock via Flutter mobile app',
+                    'ESP32 microcontroller integration with MQTT protocol',
+                    'Live availability map showing bike stations',
+                    'Ride history and usage analytics dashboard',
+                    'Admin panel for fleet management and monitoring',
+                ],
+                tech: ['Flutter', 'Dart', 'ESP32', 'GPS Module', 'MQTT', 'Firebase', 'IoT'],
+                achievement: { icon: '🏆', text: '1ST PLACE — SOFTWARE ENGINEERING<br>WORKSHOP 2 EXHIBITION' },
+                codeUrl: 'https://github.com/GhostZen1/eBike_SMS',
+                demoUrl: '#',
+            },
+            esihat: {
+                eyebrow: '// PROJECT_02 — ANDROID + JAVA',
+                title: '&#9658; e-Sihat',
+                gallery: [
+                    { pixels: ['&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;', '&#9632;&#9633;&#9633;&#9633;&#9633;&#9632;', '&#9632;&#9633;&#9632;&#9632;&#9633;&#9632;', '&#9632;&#9633;&#9632;&#9632;&#9633;&#9632;', '&#9632;&#9633;&#9633;&#9633;&#9633;&#9632;', '&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;'], label: 'MAIN SCREEN', size: '1.8rem' },
+                    { pixels: ['&#9632;&#9633;&#9632;', '&#9633;&#9632;&#9633;', '&#9632;&#9633;&#9632;'], label: 'BOOKING', size: '1.4rem' },
+                    { pixels: ['&#9633;&#9632;&#9633;', '&#9632;&#9633;&#9632;', '&#9633;&#9632;&#9633;'], label: 'PROFILE', size: '1.4rem' },
+                    { pixels: ['&#9632;&#9632;&#9633;', '&#9633;&#9632;&#9632;', '&#9632;&#9633;&#9633;'], label: 'FIREBASE', size: '1.4rem' },
+                    { pixels: ['&#9633;&#9633;&#9632;', '&#9632;&#9632;&#9633;', '&#9633;&#9633;&#9632;'], label: 'CALENDAR', size: '1.4rem' },
+                ],
+                stats: [
+                    { label: 'STATUS', value: '🥉 3RD PLACE' },
+                    { label: 'DURATION', value: '7 WEEKS' },
+                    { label: 'PLATFORM', value: 'ANDROID' },
+                    { label: 'LEVEL', value: 'DIPLOMA FYP' },
+                ],
+                desc: 'e-Sihat is a Health Appointment mobile application developed as a Final Year Project during Diploma studies. Built with Java on Android Studio and backed by Firebase, it streamlines the process of booking healthcare appointments. Patients can browse available doctors, select time slots, and manage their medical schedules — all from a clean, accessible mobile interface. Completed in just 7 weeks and earned 3rd place at the FYP Programming exhibition.',
+                features: [
+                    'Patient registration and secure Firebase authentication',
+                    'Doctor profile listing with specializations',
+                    'Real-time appointment booking and slot management',
+                    'Appointment reminder notifications',
+                    'Medical history tracking per patient',
+                    'Admin dashboard for clinic staff management',
+                ],
+                tech: ['Java', 'Android Studio', 'Firebase', 'Firestore', 'Firebase Auth', 'XML Layouts'],
+                achievement: { icon: '🥉', text: '3RD PLACE — FYP EXHIBITION<br>PROGRAMMING SECTION (DIPLOMA)' },
+                codeUrl: '#',
+                demoUrl: '#',
+            },
+            einventory: {
+                eyebrow: '// PROJECT_03 — FLUTTER + FIREBASE',
+                title: '&#9658; e-Inventory',
+                gallery: [
+                    { pixels: ['&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;', '&#9633;&#9632;&#9632;&#9632;&#9632;&#9633;', '&#9633;&#9632;&#9633;&#9633;&#9632;&#9633;', '&#9633;&#9632;&#9633;&#9633;&#9632;&#9633;', '&#9633;&#9632;&#9632;&#9632;&#9632;&#9633;', '&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;'], label: 'INVENTORY VIEW', size: '1.8rem' },
+                    { pixels: ['&#9633;&#9632;&#9633;', '&#9632;&#9633;&#9632;', '&#9633;&#9632;&#9633;'], label: 'DEVICE LIST', size: '1.4rem' },
+                    { pixels: ['&#9632;&#9633;&#9632;', '&#9633;&#9632;&#9633;', '&#9632;&#9633;&#9632;'], label: 'STATUS', size: '1.4rem' },
+                    { pixels: ['&#9633;&#9633;&#9632;', '&#9632;&#9633;&#9633;', '&#9633;&#9632;&#9632;'], label: 'REPORTS', size: '1.4rem' },
+                    { pixels: ['&#9632;&#9632;&#9633;', '&#9633;&#9633;&#9632;', '&#9632;&#9632;&#9633;'], label: 'FIREBASE DB', size: '1.4rem' },
+                ],
+                stats: [
+                    { label: 'STATUS', value: '✅ COMPLETE' },
+                    { label: 'LEVEL', value: 'DEGREE FYP' },
+                    { label: 'PLATFORM', value: 'MOBILE' },
+                    { label: 'BACKEND', value: 'FIREBASE' },
+                ],
+                desc: 'e-Inventory is a Flutter-based mobile inventory management system developed as a Final Year Project for the Degree programme. The application allows administrators and technicians to track computer peripherals and equipment, monitor their online/offline status in real-time, and maintain comprehensive inventory records. Firebase powers the backend with Firestore for data persistence and real-time synchronization across devices.',
+                features: [
+                    'Real-time device status monitoring (online / offline)',
+                    'QR code scanning for quick asset identification',
+                    'Full CRUD operations for inventory items',
+                    'Category-based filtering for peripheral types',
+                    'Audit log of status changes and updates',
+                    'Firebase Firestore real-time sync across users',
+                ],
+                tech: ['Flutter', 'Dart', 'Firebase', 'Firestore', 'Firebase Auth', 'QR Scanner'],
+                achievement: null,
+                codeUrl: '#',
+                demoUrl: null,
+            },
+        };
+
+        /* ── Modal logic ── */
+        let currentLightboxImages = [];
+        let currentLightboxIndex = 0;
+
+        function openModal(id) {
+            const p = projects[id];
+            if (!p) return;
+
+            document.getElementById('modalEyebrow').innerHTML = p.eyebrow;
+            document.getElementById('modalTitle').innerHTML = p.title;
+
+            // Gallery - supports both real images and pixel art
+            currentLightboxImages = p.gallery.filter(g => g.img).map(g => g.img);
+
+            document.getElementById('modalGallery').innerHTML = p.gallery.map((g, i) => {
+                if (g.img) {
+                    return `
+                        <div class="gallery-item" onclick="openLightbox(${currentLightboxImages.indexOf(g.img)})">
+                            <img src="${g.img}" alt="${g.label}" loading="lazy">
+                            <span class="gallery-label">[ ${g.label} ]</span>
+                        </div>`;
+                } else {
+                    return `
+                        <div class="gallery-item">
+                            <div class="gallery-pixel" style="font-size:${g.size}">${g.pixels.join('<br>')}</div>
+                            <span class="gallery-label">[ ${g.label} ]</span>
+                        </div>`;
+                }
+            }).join('');
+
+            // Stats
+            document.getElementById('modalStats').innerHTML = p.stats.map(s => `
+                <div class="stat-card">
+                    <span class="stat-label">${s.label}</span>
+                    <span class="stat-value">${s.value}</span>
+                </div>
+            `).join('');
+
+            // Description
+            document.getElementById('modalDesc').textContent = p.desc;
+
+            // Features
+            document.getElementById('modalFeatures').innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+
+            // Tech stack
+            document.getElementById('modalTech').innerHTML = p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
+
+            // Achievement
+            const achWrap = document.getElementById('modalAchievementWrap');
+            if (p.achievement) {
+                achWrap.innerHTML = `
+                    <div class="modal-section">
+                        <div class="modal-section-title">// ACHIEVEMENT_UNLOCKED</div>
+                        <div class="achievement">
+                            <span class="achievement-icon">${p.achievement.icon}</span>
+                            <span class="achievement-text">${p.achievement.text}</span>
+                        </div>
+                    </div>`;
+            } else {
+                achWrap.innerHTML = '';
+            }
+
+            // Footer links
+            document.getElementById('modalCodeBtn').href = p.codeUrl;
+
+            const demoBtn = document.getElementById('modalDemoBtn');
+            demoBtn.href = p.demoUrl || '#';
+            demoBtn.style.display = p.demoUrl ? 'inline-block' : 'none';
+
+            // Open
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleOverlayClick(e) {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        }
+
+        /* ── Lightbox ── */
+        function openLightbox(index) {
+            if (!currentLightboxImages.length) return;
+            currentLightboxIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function closeLightboxOnBg(e) {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        }
+
+        function lightboxNav(dir) {
+            currentLightboxIndex = (currentLightboxIndex + dir + currentLightboxImages.length) % currentLightboxImages.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            document.getElementById('lightboxImg').src = currentLightboxImages[currentLightboxIndex];
+            document.getElementById('lightboxCounter').textContent =
+                `[ ${currentLightboxIndex + 1} / ${currentLightboxImages.length} ]`;
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+            if (e.key === 'ArrowRight') lightboxNav(1);
+            if (e.key === 'ArrowLeft') lightboxNav(-1);
         });
     </script>
 </body>
