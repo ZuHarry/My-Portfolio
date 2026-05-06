@@ -123,7 +123,7 @@
             border: 1px solid var(--border);
             color: var(--green-dim);
             background: none;
-            cursor: none;
+            cursor: pointer;
             transition: all 0.2s;
         }
 
@@ -132,6 +132,11 @@
             color: var(--green);
             border-color: var(--green);
             background: var(--green-faint);
+        }
+
+        /* hide filtered-out items */
+        .project-item.hidden {
+            display: none;
         }
 
         /* ── OVERVIEW BUTTON ── */
@@ -192,7 +197,6 @@
             transform: translateY(0);
         }
 
-        /* scanline on modal */
         .modal-box::before {
             content: '';
             position: absolute;
@@ -617,7 +621,8 @@
                     <a href="interests.html">[MY INTERESTS]</a>
                 </div>
             </li>
-            <li><button class="nav-search-btn">&#9906;</button></li>
+            <li><button class="nav-search-btn"
+                    onclick="document.querySelector('.search-bar').classList.toggle('open')">&#9906;</button></li>
         </ul>
     </nav>
 
@@ -633,18 +638,20 @@
             <span class="div-line"></span>
         </div>
 
+        <!-- FILTER BAR — updated tags -->
         <div class="filter-bar">
-            <button class="filter-btn active">ALL</button>
-            <button class="filter-btn">PYTHON</button>
-            <button class="filter-btn">REACT</button>
-            <button class="filter-btn">C++</button>
-            <button class="filter-btn">ML</button>
+            <button class="filter-btn active" data-filter="ALL">ALL</button>
+            <button class="filter-btn" data-filter="Python">PYTHON</button>
+            <button class="filter-btn" data-filter="Dart">DART</button>
+            <button class="filter-btn" data-filter="Java">JAVA</button>
+            <button class="filter-btn" data-filter="Firebase">FIREBASE</button>
+            <button class="filter-btn" data-filter="C++">C++</button>
         </div>
 
         <div class="project-list">
 
-            <!-- PROJECT 1: e-Bike SMS -->
-            <article class="project-item reveal">
+            <!-- PROJECT 1: e-Bike SMS — tags: Python, Dart -->
+            <article class="project-item reveal" data-tags="Python Dart">
                 <div class="project-meta">
                     <span class="project-num">e-Bike SMS</span>
                     <div class="project-tags">
@@ -685,8 +692,8 @@
                 </div>
             </article>
 
-            <!-- PROJECT 2: e-Sihat -->
-            <article class="project-item reveal" style="--d:0.1s">
+            <!-- PROJECT 2: e-Sihat — tags: Java -->
+            <article class="project-item reveal" style="--d:0.1s" data-tags="Java">
                 <div class="project-meta">
                     <span class="project-num">e-Sihat</span>
                     <div class="project-tags">
@@ -728,8 +735,8 @@
                 </div>
             </article>
 
-            <!-- PROJECT 3: e-Inventory -->
-            <article class="project-item reveal" style="--d:0.2s">
+            <!-- PROJECT 3: e-Inventory — tags: Dart, Firebase -->
+            <article class="project-item reveal" style="--d:0.2s" data-tags="Dart Firebase">
                 <div class="project-meta">
                     <span class="project-num">e-Inventory</span>
                     <div class="project-tags">
@@ -839,6 +846,16 @@
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.project-item').forEach(item => {
+                    const tags = item.dataset.tags || '';
+                    if (filter === 'ALL' || tags.includes(filter)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
             });
         });
 
@@ -869,7 +886,7 @@
                     'Ride history and usage analytics dashboard',
                     'Admin panel for fleet management and monitoring',
                 ],
-                tech: ['Flutter', 'Dart', 'ESP32', 'GPS Module', 'MQTT', 'Firebase', 'IoT'],
+                tech: ['Flutter', 'Dart', 'Python', 'ESP32', 'GPS Module', 'MQTT', 'Firebase', 'IoT'],
                 achievement: { icon: '🏆', text: '1ST PLACE — SOFTWARE ENGINEERING<br>WORKSHOP 2 EXHIBITION' },
                 codeUrl: 'https://github.com/GhostZen1/eBike_SMS',
                 demoUrl: '#',
@@ -947,7 +964,6 @@
             document.getElementById('modalEyebrow').innerHTML = p.eyebrow;
             document.getElementById('modalTitle').innerHTML = p.title;
 
-            // Gallery - supports both real images and pixel art
             currentLightboxImages = p.gallery.filter(g => g.img).map(g => g.img);
 
             document.getElementById('modalGallery').innerHTML = p.gallery.map((g, i) => {
@@ -966,7 +982,6 @@
                 }
             }).join('');
 
-            // Stats
             document.getElementById('modalStats').innerHTML = p.stats.map(s => `
                 <div class="stat-card">
                     <span class="stat-label">${s.label}</span>
@@ -974,16 +989,10 @@
                 </div>
             `).join('');
 
-            // Description
             document.getElementById('modalDesc').textContent = p.desc;
-
-            // Features
             document.getElementById('modalFeatures').innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
-
-            // Tech stack
             document.getElementById('modalTech').innerHTML = p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('');
 
-            // Achievement
             const achWrap = document.getElementById('modalAchievementWrap');
             if (p.achievement) {
                 achWrap.innerHTML = `
@@ -998,14 +1007,12 @@
                 achWrap.innerHTML = '';
             }
 
-            // Footer links
             document.getElementById('modalCodeBtn').href = p.codeUrl;
 
             const demoBtn = document.getElementById('modalDemoBtn');
             demoBtn.href = p.demoUrl || '#';
             demoBtn.style.display = p.demoUrl ? 'inline-block' : 'none';
 
-            // Open
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
